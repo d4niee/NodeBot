@@ -1,5 +1,6 @@
 node_modules
 configuration.json
+.eslintrc.json
 # Build and Release Folders
 bin-debug/
 bin-release/
