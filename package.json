@@ -1,0 +1,30 @@
+{
+  "name": "nodebot",
+  "version": "1.0.0",
+  "description": "multifunctional discord bot",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dani251/NodeBot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "node.js",
+    "multifunctional",
+    "administration",
+    "music"
+  ],
+  "author": "Daniel Lambrecht",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dani251/NodeBot/issues"
+  },
+  "homepage": "https://github.com/dani251/NodeBot#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
