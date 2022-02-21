@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node app.js debug",
     "dev": "nodemon app.js",
-    "start": "node app.js",
+    "start": "node deploy-commands.js && node app.js",
     "deploy": "node deploy-commands.js"
   },
   "repository": {
@@ -29,7 +29,8 @@
   "homepage": "https://github.com/dani251/NodeBot#readme",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
-    "@discordjs/rest": "^0.3.0",
+    "@discordjs/rest": "",
+    "colors": "^1.4.0",
     "discord-api-types": "^0.27.1",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
