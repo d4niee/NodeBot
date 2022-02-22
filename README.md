@@ -7,7 +7,9 @@ This project was created with node.js and the discord.js API
 
 ## Requirements
 This Application implements following requirements:
-
+<ul>
+    <li>discord.js v13.6.0</li>
+</ul>
 Before you can launch the Applcation you need to install all requirements.
 To do this just run following command:
 
