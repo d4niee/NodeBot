@@ -1,5 +1,7 @@
 node_modules
 configuration.json
+avatar.ai
+avatar.png
 .eslintrc.json
 # Build and Release Folders
 bin-debug/
