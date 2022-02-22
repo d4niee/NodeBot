@@ -19,7 +19,7 @@ To do this just run following command:
 
 after that you have to edit the <b>configuration.json</b> file directly in the root folder. Change the following to lines to your client id and token.
 
-### ./configuration.json
+### 
     "token": "TOKEN HERE",
     "clientId": "CLIENT ID HERE",
 
