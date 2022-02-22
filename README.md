@@ -19,7 +19,8 @@ To do this just run following command:
 
 after that you have to edit the <b>configuration.json</b> file directly in the root folder. Change the following to lines to your client id and token.
 
-### "token": "TOKEN HERE",
+### ./configuration.json
+    "token": "TOKEN HERE",
     "clientId": "CLIENT ID HERE",
 
 you can find the id and token of your bot on the discord developer portal (https://discord.com/developers/applications)
