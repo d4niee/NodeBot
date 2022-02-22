@@ -17,21 +17,21 @@ To do this just run following command:
 
 ### `npm install`
 
-after that you have to edit the <b>"configuration.json"</b> file directly in the root folder. Change the following to lines to your client id and token.
+after that you have to edit the <b>"configuration.json"</b> file directly in the root folder. Change the following lines to your client id and token.
 
 ### 
     "token": "TOKEN HERE",
     "clientId": "CLIENT ID HERE",
 
 you can find the id and token of your bot on the discord developer portal <br>(https://discord.com/developers/applications)
-
+<br>now your done! Your application is ready to start! 🎉
 ## Available Scripts
 
 In the project root directory, you can run following scripts:
 
 ### `npm run deploy`
 
-This bot uses the newwest feature of discord.js called "slash commands". Because of that we need to register
+This bot uses the newest feature of discord.js v13 called "slash commands". Because of that we need to register
 the files in the ./commands folder as valid commands.
 
 ### `npm run start`
@@ -48,6 +48,6 @@ restarting the application.
 
 ### `npm run test`
 
-Runs the App in the Debug mode
+Runs the App in the Debug mode for developing and finding Bugs/Errors
 
 ## Learn More About this App
