@@ -24,7 +24,7 @@ after that you have to edit the <b>"configuration.json"</b> file directly in the
     "clientId": "CLIENT ID HERE",
 
 you can find the id and token of your bot on the discord developer portal <br>(https://discord.com/developers/applications)
-<br>now your done! Your application is ready to start! 🎉
+<br><br>now your done! Your application is ready to start! 🎉
 ## Available Scripts
 
 In the project root directory, you can run following scripts:
