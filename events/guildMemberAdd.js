@@ -20,9 +20,10 @@ module.exports = {
         console.log(`New User "${member.user.username}" has joined "${member.guild.name}"`);
 		try {
 			// send dm to user
-			member.send(`${data.emojies.wave} Wilkommen auf dem ${SERVERNAME} Server! Bitte gib` + 
-			`acht respektvoll und höflich zu sein und spamme nicht in den textkanälen.` + 
-			`Wenn du fragen hast kannst du dich gerne an die Serveradmins wenden! :)`);
+			member.send(`${data.emojies.waving} **Wilkommen auf dem ${SERVERNAME} Server!**`);
+			member.send(`Bitte gib ` + 
+			`acht **respektvoll** und **höflich** zu sein und **spamme** nicht in den textkanälen.\n` + 
+			`Wenn du fragen hast kannst du dich gerne an die **Serveradmins** wenden! :)`)
 		} catch (error) {
 			console.log(error)
 		}
