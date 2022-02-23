@@ -11,17 +11,20 @@ try {
     for (const file of commandFiles) {
 	    const command = require(`./commands/${file}`)
 	    commands.push(command.data.toJSON())
+        console.log(`[✓] added command '${file.split('.js')[0]}' successfully!`.green)
     }
 } catch (error) {
     console.log(error)
+    console.log("[X] error adding command :/")
 }
 
 const rest = new REST({ version: '9' }).setToken(token)
 try {
     rest.put(Routes.applicationCommands(clientId), { body: commands })
-	    .then(() => console.log('\n[✓] Successfully registered application commands.'.green))
+	    .then(() => console.log('[✓] Successfully registered application commands.'.green))
 	    .catch(console.error)
+    
 } catch (error) {
     console.log(error)
-    console.log("[X] error putting in the command!".red)
+    console.log("[X] error putting in the command :/".red)
 }

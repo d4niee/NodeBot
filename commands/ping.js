@@ -7,12 +7,13 @@ module.exports = {
 		.setName('ping')
 		.setDescription(DESC),
 
-	/* executed code by emitting the ping command  
-  	PARAM   		TYPE    		DESCRIPTION
-  	interaction  	Interaction  	handling */
+	/**
+	 * gets called when a user performs the
+	 * /ping command
+	 * @param {CommandInteraction} interaction 
+	 */
 	async execute(interaction) {
 		await interaction.reply(
-			{ content: 'Pong! 🏓 @' + interaction.user.username, 
-			  ephermal: true })
+			{content: 'Pong! 🏓 @' + interaction.user.username})
 	},
 }
