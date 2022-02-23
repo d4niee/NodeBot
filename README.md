@@ -6,8 +6,6 @@ This bot was created with the node.js javascript framework and the discord.js AP
 <br>see more:
 <br>discord.js: https://discord.js.org/#/
 <br>node.js: https://nodejs.org/en/
-<br>
-This Project uses the Apache-2.0 License. Too see more take a look at the <br>LICENSE</br> file
 
 ## Requirements and Preparation
 This Application implements following requirements:
