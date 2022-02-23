@@ -8,9 +8,10 @@ This project was created with node.js and the discord.js API
 ## Requirements and Preparation
 This Application implements following requirements:
 <ul>
-    <li>discord.js v13.6.0+</li>
-    <li>nodemon v2.0.15+ for dev mode</li>
-    <li>colors v1.4.0+ for console colors</li>
+    <li><a href="https://discord.js.org/#/">discord.js v13.6.0+</a></li>
+    <li><a href="https://www.npmjs.com/package/nodemon">nodemon v2.0.15+ for dev mode</a></li>
+    <li><a href="https://www.npmjs.com/package/colors">colors v1.4.0+ for console colors</a></li>
+    <li><a href="https://distube.js.org/#/">distube 3.3.2+</a></li>
 </ul>
 Before you can launch the Applcation you need to install all requirements listed above. <br>
 To do this just run following command:
