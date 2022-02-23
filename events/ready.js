@@ -16,10 +16,12 @@ module.exports = {
 	name: 'ready',
 	once: true,
 
-    /* sets the activity and online status of the bot and prints
-       some console information output
-    PARAMETER     TYPE             DESCRIPTION
-    client        Discord.Client   Discord Bot */
+
+    /**
+     * get only runs one time 
+     * emitted when the bot is online and ready
+     * @param {Client} client discord client 
+     */
 	execute(client) {
         const utilities = new Utilities(client)
         utilities.asciiArt()
