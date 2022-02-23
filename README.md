@@ -15,7 +15,7 @@ This Application implements following requirements:
     <li><a href="https://www.npmjs.com/package/colors">colors v1.4.0+ for console colors</a></li>
     <li><a href="https://distube.js.org/#/">distube 3.3.2+</a></li>
 </ul>
-Before you can launch the Applcation you need to install all <br>requirements</br> listed above. <br>
+Before you can launch the Applcation you need to install all <b>requirements</b> listed above. <br>
 To do this just run following command:
 
 ### `npm install`
