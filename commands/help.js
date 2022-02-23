@@ -13,6 +13,6 @@ module.exports = {
 	 * @param {CommandInteraction} interaction 
 	 */
 	async execute(interaction) {
-		await interaction.reply({content: 'ge', ephemeral: true})
+		await interaction.reply({content: 'help', ephemeral: true})
 	},
 };
