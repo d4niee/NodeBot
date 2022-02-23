@@ -1,7 +1,8 @@
 # Getting Started with NodeBot
 
 NodeBot is a mutlifunctional Discord Bot with a music Command to play music from Spotify, Soundcloud and
-Youtube in your discord voicechannel.
+Youtube in your discord voicechannel. <br> 
+This bot was created with the node.js javascript framework and the discord.js API
 <br>see more:
 <br>discord.js: https://discord.js.org/#/
 <br>node.js: https://nodejs.org/en/
