@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 const { MessageEmbed } = require('discord.js')
 const fs = require('fs');
 const path = require('path');
-const { options } = require('superagent');
 
 /* description of the command */
 const DESC = "Play music in your voice channel!"
@@ -76,8 +75,21 @@ module.exports = {
 		try {
 			/* choose the selected subcommand (arg) */
 			switch(options.getSubcommand()) {
-				case "play": {}
-				case "volume": {}
+
+				case "play": {
+					client.distube.playVoiceChannel(VoiceChannel, options.getString("query"), 
+						{textChannel: channel, member: member})
+					return interaction.reply({content: `Request Received`})
+				}
+
+				case "volume": {
+					const Volume = options.getNumber("percent")
+					if (Volume > 100 || Volume < 1) 
+						return interaction.reply({content: `you have to specify a number between 1 and 100.`})
+					client.distube.setVolume(VoiceChannel, Volume)
+					return interaction.reply({content: `Volume has been set to \`${Volume}%\``})
+				}
+
 				case "settings": {
 					switch(options.getString("options")) {
 						case "skip": {}
@@ -87,6 +99,7 @@ module.exports = {
 						case "stop": {}
 					}
 				}
+				
 			}
 		} catch (error) {
 			console.log(error)
