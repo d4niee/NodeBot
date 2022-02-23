@@ -24,7 +24,7 @@ module.exports = {
 		.addSubcommand(subcommand => 
 			subcommand
 				.setName("help")
-				.setDescription("get information about the music command"))
+				.setDescription(`${data.emojies.help} get information about the music command`))
 
 		/* Subcommand play */
 		.addSubcommand(subcommand => 
@@ -37,22 +37,22 @@ module.exports = {
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("volume")
-				.setDescription("alter the volume")
+				.setDescription(`${data.emojies.volume} alter the volume`)
 				.addNumberOption(option => option.setName("percent").setDescription("10 = 10%").setRequired(true)))
 		
 		/* Settings subcommand */
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("settings")
-				.setDescription("select an option.")
+				.setDescription(`${data.emojies.settings} select an option.`)
 				.addStringOption(option =>
 					 option.setName("option")
 					 	.setDescription("select an option")
-						.addChoice("queue", "queue")
-						.addChoice("skip", "skip")
-						.addChoice("pause", "pause")
-						.addChoice("resume", "resume")
-						.addChoice("stop", "stop")
+						.addChoice(`${data.emojies.queue} queue`, "queue")
+						.addChoice(`${data.emojies.skip} skip`, "skip")
+						.addChoice(`${data.emojies.stop} pause`, "pause")
+						.addChoice(`${data.emojies.play} resume`, "resume")
+						.addChoice(`${data.emojies.stop} stop`, "stop")
 						.setRequired(true))),
 
 	/**
@@ -63,10 +63,9 @@ module.exports = {
 	async execute(interaction) {
 		/* import client from app.js */
 		const client = require('../app')
-		const { option, member, guild, channel } = interaction
+		const { options, member, guild, channel } = interaction
 		const VoiceChannel = member.voice.channel
 
-		/* when the user is not in a channel or the bot is already playing -> don't join */
 		if (!VoiceChannel) 
 			return interaction.reply({content: `${data.emojies.warning} Warning: You are not in a voice channel!`, 
 				ephemeral: true})
@@ -79,7 +78,7 @@ module.exports = {
 			switch(options.getSubcommand()) {
 				case "play": {}
 				case "volume": {}
-				case settings: {
+				case "settings": {
 					switch(options.getString("options")) {
 						case "skip": {}
 						case "queue": {}
