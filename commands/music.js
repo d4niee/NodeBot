@@ -77,9 +77,9 @@ module.exports = {
 			switch(options.getSubcommand()) {
 
 				case "play": {
-					client.distube.playVoiceChannel(VoiceChannel, options.getString("query"), 
+					client.distube.play(VoiceChannel, options.getString("query"), 
 						{textChannel: channel, member: member})
-					return interaction.reply({content: `Request Received`})
+					return interaction.reply({content: `${data.emojies.note} Music Request Received`})
 				}
 
 				case "volume": {
@@ -99,7 +99,7 @@ module.exports = {
 						case "stop": {}
 					}
 				}
-				
+
 			}
 		} catch (error) {
 			console.log(error)
