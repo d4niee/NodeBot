@@ -73,11 +73,11 @@ module.exports = {
 			VoiceChannelState = 'SELECTED'
 		}
 
-		if (!VoiceChannel) 
+		if (!VoiceChannel && options.getSubcommand() !== 'help') 
 			return interaction.reply({content: `${data.emojies.warning} Warning: You are not in a voice channel!`, 
 				ephemeral: true})
 
-		if (currentVoiceChannelId !== member.voice.channelId) {
+		if (currentVoiceChannelId !== member.voice.channelId && options.getSubcommand() !== 'help') {
 			return interaction.reply({content: `${data.emojies.warning} Warning: I'm already playing music in the channel **${guild.me.voice.channel}**`,
 				ephemeral:true})
 		}
@@ -85,6 +85,32 @@ module.exports = {
 		try {
 			/* choose the selected subcommand (arg) */
 			switch(options.getSubcommand()) {
+
+				case "help": {
+					const helpEmbed = new MessageEmbed()
+						.setColor('LIGHT_GREY')
+						.setTitle(`${data.emojies.help} **Music** Command Help Page`)
+						.setDescription(`Find out what you can do with the **/music** command`)
+						.addFields(
+							{name: `${data.emojies.play} play music`, value: '/music play **<query>**', inline:true},
+							{name: `${data.emojies.volume} alter volume`, value: `/music volume <volume between **1** and **100**>`, inline:true},
+						)
+						.addFields(
+							{
+								name: `\n${data.emojies.settings} Music Settings`, 
+								value: 
+									'**/music settings queue** | print current player queue\n' + 
+									'**/music settings skip** | skip the current song\n' + 
+									'**/music settings pause** | pause the player\n' + 
+									'**/music settings resume** | resume the player when paused\n' + 
+									'**/music settings stop** | stop the player' 
+							}
+						)
+					return interaction.reply({
+						embeds: [helpEmbed] , 
+						ephemeral: true
+					})
+				}
 
 				case "play": { 
 					client.distube.play(VoiceChannel, options.getString("query"), 
@@ -98,7 +124,7 @@ module.exports = {
 				case "volume": {
 					const Volume = options.getNumber("percent")
 					if (Volume > 100 || Volume < 1) 
-						return interaction.reply({content: `you have to specify a number between 1 and 100.`})
+						return interaction.reply({content: `you have to specify a number between **1** and **100**.`})
 					client.distube.setVolume(VoiceChannel, Volume)
 					return interaction.reply({content: `Volume has been set to \`${Volume}%\``})
 				}
@@ -112,6 +138,7 @@ module.exports = {
 						case "skip": 
 							await queue.skip(VoiceChannel)
 							return interaction.reply({content: `${data.emojies.skip} Song has been skipped`})
+
 						case "queue": 
 						if (!queue) return interaction.reply(`${data.emojies.error} | There is nothing playing!`)
 						const q = queue.songs
@@ -125,11 +152,13 @@ module.exports = {
 							return interaction.reply({
 								content: `${data.emojies.pause} Song has been paused`
 							})
+
 						case "resume": 
 							await queue.resume(VoiceChannel)
 							return interaction.reply({
 								content: `${data.emojies.resume} Song has been resumed`
 							})
+
 						case "stop": 
 							await queue.stop(VoiceChannel)
 							currentVoiceChannelId = null
