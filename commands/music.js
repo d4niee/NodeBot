@@ -3,6 +3,9 @@ const { MessageEmbed } = require('discord.js')
 const fs = require('fs');
 const path = require('path');
 
+var currentVoiceChannelId = null 
+var VoiceChannelState = 'FREE'
+
 /* description of the command */
 const DESC = "Play music in your voice channel!"
 
@@ -47,7 +50,7 @@ module.exports = {
 				.addStringOption(option =>
 					 option.setName("options")
 					 	.setDescription("select an option")
-						.addChoice(`${data.emojies.queue} queue`, "queue")
+						.addChoice(`${data.emojies.queues} queue`, "queue")
 						.addChoice(`${data.emojies.skip} skip`, "skip")
 						.addChoice(`${data.emojies.stop} pause`, "pause")
 						.addChoice(`${data.emojies.play} resume`, "resume")
@@ -65,17 +68,20 @@ module.exports = {
 		const client = require('../app')
 		const { options, member, guild, channel } = interaction
 		const VoiceChannel = member.voice.channel
-		const VoiceChannelId = member.voice.channelId
+		if (VoiceChannelState === 'FREE') {
+			currentVoiceChannelId = member.voice.channelId
+			VoiceChannelState = 'SELECTED'
+		}
 
 		if (!VoiceChannel) 
 			return interaction.reply({content: `${data.emojies.warning} Warning: You are not in a voice channel!`, 
 				ephemeral: true})
 
-		/*
-		if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.channelId && currentDJ != member.user.id) 
-			return interaction.reply({content: `${data.emojies.warning} Warning: I'm already playing music in the channel ${guild.me.channelId}`,
+		if (currentVoiceChannelId !== member.voice.channelId) {
+			return interaction.reply({content: `${data.emojies.warning} Warning: I'm already playing music in the channel **${guild.me.voice.channel}**`,
 				ephemeral:true})
-		*/
+		}
+
 		try {
 			/* choose the selected subcommand (arg) */
 			switch(options.getSubcommand()) {
@@ -126,6 +132,8 @@ module.exports = {
 							})
 						case "stop": 
 							await queue.stop(VoiceChannel)
+							currentVoiceChannelId = null
+							VoiceChannelState = 'FREE'
 							return interaction.reply({
 								content: `${data.emojies.stop} Music has been stopped`})
 					}
