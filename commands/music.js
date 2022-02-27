@@ -45,7 +45,7 @@ module.exports = {
 				.setName("settings")
 				.setDescription(`${data.emojies.settings} select an option.`)
 				.addStringOption(option =>
-					 option.setName("option")
+					 option.setName("options")
 					 	.setDescription("select an option")
 						.addChoice(`${data.emojies.queue} queue`, "queue")
 						.addChoice(`${data.emojies.skip} skip`, "skip")
@@ -53,6 +53,7 @@ module.exports = {
 						.addChoice(`${data.emojies.play} resume`, "resume")
 						.addChoice(`${data.emojies.stop} stop`, "stop")
 						.setRequired(true))),
+
 
 	/**
 	 * gets called when a user performs the
@@ -64,23 +65,29 @@ module.exports = {
 		const client = require('../app')
 		const { options, member, guild, channel } = interaction
 		const VoiceChannel = member.voice.channel
+		const VoiceChannelId = member.voice.channelId
 
 		if (!VoiceChannel) 
 			return interaction.reply({content: `${data.emojies.warning} Warning: You are not in a voice channel!`, 
 				ephemeral: true})
-		if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.channelId) 
+
+		/*
+		if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.channelId && currentDJ != member.user.id) 
 			return interaction.reply({content: `${data.emojies.warning} Warning: I'm already playing music in the channel ${guild.me.channelId}`,
 				ephemeral:true})
-		
+		*/
 		try {
 			/* choose the selected subcommand (arg) */
 			switch(options.getSubcommand()) {
 
-				case "play": {
+				case "play": { 
 					client.distube.play(VoiceChannel, options.getString("query"), 
-						{textChannel: channel, member: member})
+					{
+						textChannel: channel, 
+						member: member
+					})
 					return interaction.reply({content: `${data.emojies.note} Music Request Received`})
-				}
+				 }
 
 				case "volume": {
 					const Volume = options.getNumber("percent")
@@ -91,15 +98,43 @@ module.exports = {
 				}
 
 				case "settings": {
+					const queue = await client.distube.getQueue(VoiceChannel)
+					if (!queue)
+						return interaction.reply({content: `${data.emojies.error} There is no queue`})
+
 					switch(options.getString("options")) {
-						case "skip": {}
-						case "queue": {}
-						case "pause": {}
-						case "resume": {}
-						case "stop": {}
+						case "skip": 
+							await queue.skip(VoiceChannel)
+							return interaction.reply({content: `${data.emojies.skip} Song has been skipped`})
+						case "queue": 
+						if (!queue) return interaction.reply(`${data.emojies.error} | There is nothing playing!`)
+						const q = queue.songs
+						  .map((song, i) => `${i === 0 ? 'Playing:' : `${i}.`} ${song.name} - \`${song.formattedDuration}\``)
+						  .join('\n')
+						return interaction.reply(`${data.emojies.queues} | **Server Queue**\n${q}`)
+
+						case "pause": 
+							console.log("queue")
+							await queue.pause(VoiceChannel)
+							return interaction.reply({
+								content: `${data.emojies.pause} Song has been paused`
+							})
+						case "resume": 
+							await queue.resume(VoiceChannel)
+							return interaction.reply({
+								content: `${data.emojies.resume} Song has been resumed`
+							})
+						case "stop": 
+							await queue.stop(VoiceChannel)
+							return interaction.reply({
+								content: `${data.emojies.stop} Music has been stopped`})
 					}
 				}
-
+				default:
+					return interaction.reply({
+						content: `${data.emojies.error} Did not find a subcommand like that :/`,
+						ephemeral: true
+					})
 			}
 		} catch (error) {
 			console.log(error)
