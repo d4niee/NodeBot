@@ -40,11 +40,13 @@ const utilities = new Utilities(client)
 utilities.setupCommands() // setting up the commands first
 utilities.setupEvents()   // adding and init events
 
-/* distube events */
+/* distube status */
 const status = queue =>
   `Volume: \`${queue.volume}%\` | Filter: \`${queue.filters.join(', ') || 'Off'}\` | Loop: \`${
     queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'
   }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
+
+
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
