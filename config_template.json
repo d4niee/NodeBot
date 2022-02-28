@@ -1,0 +1,28 @@
+{
+    "token": "BOT TOKEN",
+    "clientId": "CLIENT ID",
+    "url": "https://discord.com/api/oauth2/authorize?client_id=",
+    "permissionLevel": "&permissions=0&scope=bot%20applications.commands",
+    "activity": "YOUR ACTIVITY HERE",
+    "activityType": "PLAYING",
+    "status": "dnd",
+    "embedcolor": "#ffffff",
+
+    "emojies": {
+        "play": "▶️",
+        "stop": "⏹️",
+        "skip": "⏭️",
+        "pause": "⏸️",
+        "resume": "⏯️",
+        "queues": "📄",
+        "success": "☑️",
+        "repeat": "🔁",
+        "error": "❌",
+        "warning": "⚠️",
+        "help": "❓",
+        "volume": "🔊",
+        "settings": "⚙️",
+        "waving": "👋",
+        "note": "🎶"
+    }
+}
